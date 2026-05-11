@@ -1,16 +1,26 @@
 import { Tabs } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, Modal, Pressable, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { HapticTab } from '@/components/haptic-tab';
 
 export default function TabLayout() {
   const [modalVisible, setModalVisible] = useState(false);
-  const activeColor = '#4A3728'; 
-  const inactiveColor = '#B2A59B'; 
+
+  const activeColor = '#4A3728';
+  const inactiveColor = '#B2A59B';
 
   return (
     <>
@@ -18,12 +28,11 @@ export default function TabLayout() {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarActiveTintColor: activeColor, 
-          tabBarInactiveTintColor: inactiveColor, 
+          tabBarActiveTintColor: activeColor,
+          tabBarInactiveTintColor: inactiveColor,
           tabBarButton: HapticTab,
           tabBarIconStyle: {
-            
-            marginTop: 6, 
+            marginTop: 6,
           },
           tabBarStyle: {
             height: 65,
@@ -46,7 +55,11 @@ export default function TabLayout() {
           name="index"
           options={{
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home-variant" size={26} color={color} />
+              <MaterialCommunityIcons
+                name="home-variant"
+                size={26}
+                color={color}
+              />
             ),
           }}
         />
@@ -55,18 +68,22 @@ export default function TabLayout() {
           name="search"
           options={{
             tabBarIcon: ({ color, focused }) => (
-              <Ionicons name={focused ? "search" : "search-outline"} size={24} color={color} />
+              <Ionicons
+                name={focused ? 'search' : 'search-outline'}
+                size={24}
+                color={color}
+              />
             ),
           }}
         />
 
-        {/* Create Tab with Interceptor */}
+        {/* Create Tab */}
         <Tabs.Screen
           name="create"
           listeners={{
             tabPress: (e) => {
-              e.preventDefault(); 
-              setModalVisible(true); 
+              e.preventDefault();
+              setModalVisible(true);
             },
           }}
           options={{
@@ -80,7 +97,11 @@ export default function TabLayout() {
           name="notifications"
           options={{
             tabBarIcon: ({ color, focused }) => (
-              <Ionicons name={focused ? "notifications" : "notifications-outline"} size={24} color={color} />
+              <Ionicons
+                name={focused ? 'notifications' : 'notifications-outline'}
+                size={24}
+                color={color}
+              />
             ),
           }}
         />
@@ -95,8 +116,7 @@ export default function TabLayout() {
                   width: 28,
                   height: 28,
                   borderRadius: 14,
-                  borderWidth: 0, 
-                  opacity: focused ? 1 : 0.7, 
+                  opacity: focused ? 1 : 0.7,
                 }}
               />
             ),
@@ -104,45 +124,64 @@ export default function TabLayout() {
         />
       </Tabs>
 
-      {/* Global Horizontal Bottom Modal */}
+      {/* Create Modal */}
       <Modal
         animationType="slide"
-        transparent={true}
+        transparent
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalWrapper}>
-          {/* Transparent dismiss area */}
-          <Pressable style={styles.dismissArea} onPress={() => setModalVisible(false)} />
-          
+          <Pressable
+            style={styles.dismissArea}
+            onPress={() => setModalVisible(false)}
+          />
+
           <View style={styles.modalContent}>
-            {/* Header with Title and Close Button */}
             <View style={styles.modalHeader}>
-              <TouchableOpacity style={styles.closeIconButton} onPress={() => setModalVisible(false)}>
+              <TouchableOpacity
+                style={styles.closeIconButton}
+                onPress={() => setModalVisible(false)}
+              >
                 <Ionicons name="close" size={24} color="#4A3728" />
               </TouchableOpacity>
-              <Text style={styles.modalTitle}>Start creating now</Text>
+
+              <Text style={styles.modalTitle}>
+                Start creating now
+              </Text>
             </View>
-            
-            {/* Horizontal Menu Container */}
+
             <View style={styles.menuContainer}>
-              <TouchableOpacity style={styles.menuItem} onPress={() => setModalVisible(false)}>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => setModalVisible(false)}
+              >
                 <View style={styles.iconBackground}>
-                <MaterialCommunityIcons name="pin" size={32} color="#4A3728" />
+                  <MaterialCommunityIcons
+                    name="pin"
+                    size={32}
+                    color="#4A3728"
+                  />
                 </View>
                 <Text style={styles.menuText}>Pins</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem} onPress={() => setModalVisible(false)}>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => setModalVisible(false)}
+              >
                 <View style={styles.iconBackground}>
-                    <Ionicons name="grid" size={32} color="#4A3728" />
+                  <Ionicons name="grid" size={32} color="#4A3728" />
                 </View>
                 <Text style={styles.menuText}>Collage</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem} onPress={() => setModalVisible(false)}>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => setModalVisible(false)}
+              >
                 <View style={styles.iconBackground}>
-                    <Ionicons name="albums" size={32} color="#4A3728" />
+                  <Ionicons name="albums" size={32} color="#4A3728" />
                 </View>
                 <Text style={styles.menuText}>Board</Text>
               </TouchableOpacity>
@@ -168,7 +207,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingTop: 15,
-    paddingBottom: 60, 
+    paddingBottom: 60,
     paddingHorizontal: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -4 },
@@ -194,20 +233,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   menuContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
     paddingHorizontal: 15,
   },
   menuItem: {
-    flex: 1, 
+    flex: 1,
     alignItems: 'center',
   },
   iconBackground: {
     width: 80,
     height: 80,
     borderRadius: 24,
-    backgroundColor: '#F5F5F5', 
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,

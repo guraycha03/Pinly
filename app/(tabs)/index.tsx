@@ -1,4 +1,6 @@
 import { View, Image, StyleSheet, Text, useWindowDimensions, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
+import { TouchableOpacity } from 'react-native';
 
 const images = [
   { source: require('@/assets/images/img/cute-character.png'), ratio: 1 },
@@ -14,15 +16,17 @@ const images = [
 
 export default function HomeScreen() {
   const { width } = useWindowDimensions();
-
+  const router = useRouter();
   const numColumns = width > 900 ? 3 : 2;
   const gap = 10;
-
   const cardWidth = (width - 16 - gap * (numColumns - 1)) / numColumns;
   const columns: any[][] = Array.from({ length: numColumns }, () => []);
 
   images.forEach((item, index) => {
-    columns[index % numColumns].push(item);
+    columns[index % numColumns].push({
+      ...item,
+      realIndex: index,
+    });
   });
 
   return (
@@ -46,8 +50,15 @@ export default function HomeScreen() {
             {col.map((item, index) => {
               const height = cardWidth / item.ratio;
               return (
-                <View
-                  key={index}
+                <TouchableOpacity
+                  onPress={() =>
+                    router.push({
+                      pathname: '/pin/[id]',
+                      params: {
+                        id: item.realIndex.toString(),
+                      },
+                    })
+                  }
                   style={[styles.card, { height, marginBottom: gap }]}
                 >
                   <Image
@@ -55,7 +66,7 @@ export default function HomeScreen() {
                     style={styles.image}
                     resizeMode="cover"
                   />
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>
