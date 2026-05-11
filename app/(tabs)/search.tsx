@@ -7,7 +7,6 @@ export default function SearchScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Search Bar Container - Constrained for wide screen */}
       <View style={[
         styles.searchBarContainer, 
         { width: width > MAX_WIDTH ? MAX_WIDTH : '100%' }
@@ -24,7 +23,6 @@ export default function SearchScreen() {
         </View>
       </View>
 
-      {/* Empty State Content only (No Suggestions) */}
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
   },
   emptyStateWrapper: {
     alignItems: 'center',
-    marginTop: 80, // Moved down slightly for better visual balance
+    marginTop: 80, 
     paddingHorizontal: 40,
   },
   illustrationCircle: {

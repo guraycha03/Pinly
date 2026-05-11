@@ -35,7 +35,6 @@ export default function HomeScreen() {
       contentContainerStyle={{ paddingBottom: 120 }}
       showsVerticalScrollIndicator={false}
     >
-      {/* Header with matching top space */}
       <View style={styles.header}>
         <View style={styles.headerTitleContainer}>
           <Text style={styles.headerText}>For You</Text>
@@ -85,15 +84,14 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAF9F6', // Matched the off-white from search page
+    backgroundColor: '#FAF9F6', 
     paddingHorizontal: 8,
   },
 
   header: {
-    // This matches the marginTop: 40 from your Search Bar Container
     marginTop: 40, 
     marginBottom: 20,
-    paddingHorizontal: 8, // Align with the grid edge
+    paddingHorizontal: 8, 
     alignItems: 'flex-start', 
   },
 

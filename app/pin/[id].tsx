@@ -57,7 +57,6 @@ import {
   
     return (
       <>
-        {/* ✅ THIS REMOVES THE DEFAULT HEADER (IMPORTANT) */}
         <Stack.Screen options={{ headerShown: false }} />
   
         <View style={styles.container}>
@@ -84,9 +83,9 @@ import {
                 <ActionRow />
   
                 <View style={styles.description}>
-                  <Text style={styles.title}>Shirt Description</Text>
+                  <Text style={styles.title}>☁️ Pin Title ☁️</Text>
                   <Text style={styles.text}>
-                    This is where the image description will appear.
+                  this is where the post description will appear シ
                   </Text>
                 </View>
               </ScrollView>
@@ -103,9 +102,9 @@ import {
               <ActionRow />
   
               <View style={styles.description}>
-                <Text style={styles.title}>Shirt Description</Text>
+                <Text style={styles.title}>☁️ Pin Title ☁️</Text>
                 <Text style={styles.text}>
-                  This is where the image description will appear.
+                  this is where the post description will appear シ
                 </Text>
               </View>
             </ScrollView>
@@ -123,7 +122,7 @@ import {
   
     backButton: {
         position: 'absolute',
-        top: 40, 
+        top: 25, 
         left: 16,
         zIndex: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.45)',
